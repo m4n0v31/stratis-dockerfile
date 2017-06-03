@@ -32,8 +32,8 @@ RUN git clone $STRATIS_REPO \
   && mv stratisd /usr/bin \
   && rm -rf /tmp/$STRATIS_PACKAGE
 
-# Make the STRATIS ports available to the Docker container's host.
-EXPOSE 16174
+# Make the STRATIS ports available to the Docker container's host (--publish 16174:8000 from host).
+EXPOSE 8000
 
 # Configure the STRATIS daemon to run when the container starts
 # Forward 8000 to localhost:45443 so it's accessible outside the container.
