@@ -11,5 +11,4 @@ echo "Unlocking wallet for staking..."
 stratisd -datadir=$STRATIS_DATA_DIR walletpassphrase $WALLET_PASSPHRASE 9999999 true
 echo "Wallet unlocked successfully."
 
-stratisd -datadir=$STRATIS_DATA_DIR getstakinginfo
 wait
