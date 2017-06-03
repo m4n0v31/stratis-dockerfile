@@ -1,5 +1,5 @@
 # stratis-dockerfile
-Dockerfile for StratisX Daemon + Staking
+Dockerfile for StratisX Daemon + Staking on Linux (Debian)
 
 ### Build Docker Image
     docker build -t stratis .
