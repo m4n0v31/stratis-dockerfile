@@ -1,4 +1,3 @@
-# Based on Michael Lynch's Sia on Docker Guide (https://mtlynch.io/sia-via-docker/)
 FROM debian:jessie-slim
 MAINTAINER Erik Rogers <erik.rogers@live.com>
 
@@ -18,7 +17,6 @@ RUN apt-get update && apt-get install -y \
   libdb5.3-dev \
   libminiupnpc-dev \
   libqrencode-dev \
-  socat \
   wget \
   unzip \
   && rm -rf /var/cache/apk/*
@@ -32,11 +30,16 @@ RUN git clone $STRATIS_REPO \
   && mv stratisd /usr/bin \
   && rm -rf /tmp/$STRATIS_PACKAGE
 
-# Make the STRATIS ports available to the Docker container's host (--publish 16174:8000 from host).
-EXPOSE 8000
+# Make the STRATIS ports available to the Docker container's host.
+EXPOSE 16174
 
-# Configure the STRATIS daemon to run when the container starts
-# Forward 8000 to localhost:16174 so it's accessible outside the container.
-# Specify the STRATIS directory as /mnt/stratis so that you can view these files outside
-# of Docker.
-ENTRYPOINT socat tcp-listen:8000,reuseaddr,fork tcp:localhost:16174 & stratisd -rescan -detachdb -datadir=/mnt/stratis
+ENV STRATIS_DATA_DIR /mnt/stratis
+
+# Copy script and set executable flag
+COPY auto-stake.sh /usr/bin/auto-stake.sh
+RUN chmod +x /usr/bin/auto-stake.sh
+
+# Run the auto-stake script.
+RUN mkdir -p /var/run/stratis
+WORKDIR /var/run/stratis
+ENTRYPOINT ["/usr/bin/auto-stake.sh"]
