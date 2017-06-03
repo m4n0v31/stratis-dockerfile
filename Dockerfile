@@ -39,4 +39,4 @@ EXPOSE 8000
 # Forward 8000 to localhost:45443 so it's accessible outside the container.
 # Specify the STRATIS directory as /mnt/stratis so that you can view these files outside
 # of Docker.
-ENTRYPOINT socat tcp-listen:8000,reuseaddr,fork tcp:localhost:16174 & stratisd -datadir=/mnt/stratis
+ENTRYPOINT socat tcp-listen:8000,reuseaddr,fork tcp:localhost:16174 & stratisd -rescan -detachdb -datadir=/mnt/stratis
