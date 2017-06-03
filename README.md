@@ -27,7 +27,7 @@ addnode=104.129.29.82
 addnode=104.136.222.147
 ```
 
-**NOTE:** `stratisd` also can use this file for connecting to a remote RPC server.
+**NOTE:** You should use the `rpcallowip=172.17.*.*` line if you are running inside a Docker container. This is the subnet that Docker's `bridge0` interface uses to expose itself to outside connections.
 
 ### Optional: Copy Wallet
     cp ~/.stratis/wallet.dat /var/run/stratis
