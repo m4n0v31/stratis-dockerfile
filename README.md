@@ -1,5 +1,7 @@
 # stratis-dockerfile
-Dockerfile for StratisX Daemon + Staking
+Dockerfile for StratisX Daemon + Staking on Linux (Debian)
+
+:moneybag: Donations welcomed at `SYDjaLPb4zBFo55cNMtv83AD7kcfJiWatm` :bow:
 
 ### Build Docker Image
     docker build -t stratis .
@@ -25,9 +27,10 @@ staking=1
 
 addnode=104.129.29.82
 addnode=104.136.222.147
+# add other nodes here...
 ```
 
-**NOTE:** `stratisd` also can use this file for connecting to a remote RPC server.
+**NOTE:** You should **not** modify the `rpcallowip=172.17.*.*` line if you are running `stratisd` inside a Docker container! This is the subnet that the Docker `bridge0` interface uses to expose containers to the host.
 
 ### Optional: Copy Wallet
     cp ~/.stratis/wallet.dat /var/run/stratis
