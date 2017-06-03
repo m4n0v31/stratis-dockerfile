@@ -27,7 +27,7 @@ addnode=104.129.29.82
 addnode=104.136.222.147
 ```
 
-**NOTE:** You should use the `rpcallowip=172.17.*.*` line if you are running inside a Docker container. This is the subnet that Docker's `bridge0` interface uses to expose itself to outside connections.
+**NOTE:** You should **not** modify the `rpcallowip=172.17.*.*` line if you are running `stratisd` inside a Docker container! This is the subnet that the Docker `bridge0` interface uses to expose containers to the host.
 
 ### Optional: Copy Wallet
     cp ~/.stratis/wallet.dat /var/run/stratis
